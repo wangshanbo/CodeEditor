@@ -1,0 +1,48 @@
+header {
+  background: #353535;
+  height: 50px;
+}
+
+section {
+  display: flex;
+  flex: 1 1 0%;
+  height: initial;
+  position: absolute;
+  outline: none;
+  overflow: hidden;
+  user-select: text;
+  bottom: 0px;
+  top: 50px;
+  flex-direction: row;
+  left: 0px;
+  right: 0px;
+}
+
+.content-view {
+  height: calc(100vw - 50px);
+}
+
+.content-left {
+  width: 30vw;
+  background: #1e1e1e;
+  cursor: text;
+}
+
+.content-right {
+  flex: 1;
+  background: #eee;
+}
+
+.Resizer {
+  margin: 0px -5px;
+  background: #000;
+  background-clip: padding-box;
+  border-left: 5px solid hsla(0, 0%, 100%, 0);
+  border-right: 5px solid hsla(0, 0%, 100%, 0);
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  cursor: col-resize;
+  opacity: 1.2;
+  z-index: 20;
+}
+
