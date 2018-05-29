@@ -21,10 +21,6 @@ export class AppComponent {
 
   //是否移动
   private isDown: boolean = false;
-  // X轴位置
-  private disX: number;
-  // Y轴位置
-  private disY: number;
 
   // 初始化rx对象
   private clicks = new Subject<any>();
@@ -64,7 +60,7 @@ export class AppComponent {
   constructor() {
     this.config = {
       lineNumbers: true,                     //显示行号
-      extraKeys: { "Ctrl": "autocomplete" }, //自动提示配置
+      extraKeys: { "Ctrl-Z": "autocomplete" }, //自动提示配置
       theme: "darcula"                  //选中的theme
     };
     this.content = `
@@ -75,14 +71,15 @@ export class AppComponent {
 <title>在线编辑器</title>
 <script>
   function showNum(num){
-  	console.log(num);
+  	document.getElementById("view").innerHTML=num*num
   }
 </script>
 </head>
 <body>
-
+<h3>使用ctrl+s进行代码保存</h3>
+<h3>使用ctrl+z进行代码提示</h3>
 <button type="button" onclick="showNum(10)">显示数字</button>
-
+<div id="view"></div>
 </body>
 </html>
     `
@@ -91,12 +88,22 @@ export class AppComponent {
 
     $("#content_right").contents().find("body").html(this.content);
 
-    this.clicks
-      .debounceTime(5000)
-      .subscribe(e => {
+    // this.clicks
+    //   .debounceTime(500)
+    //   .subscribe(e => {
+    //     $("#content_right").contents().find("body")
+    //       .html(this.content);
+    //   });
+    const _this = this;
+    window.addEventListener("keydown", function (e) {
+      //可以判断是不是mac，如果是mac,ctrl变为花键
+      //event.preventDefault() 方法阻止元素发生默认的行为。
+      if (e.keyCode == 83 && (navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey)) {
+        e.preventDefault();
         $("#content_right").contents().find("body")
-          .html(this.content);
-      });
+          .html(_this.content);
+      }
+    }, false);
   }
 
 }
