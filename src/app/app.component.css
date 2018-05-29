@@ -1,6 +1,10 @@
 header {
   background: #353535;
+  color: #eee;
+  font-size: 20px;
   height: 50px;
+  line-height: 50px;
+  text-align: center;
 }
 
 section {
